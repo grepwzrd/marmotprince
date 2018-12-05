@@ -8,8 +8,9 @@ import (
 	"os/exec"
 )
 
+// change this to use bufio
+
 func ClearScreen() {
-	// check out fmt.Scanln() for taking user input from terminal
 	cmd := exec.Command("clear")
 	cmd.Stdout = os.Stdout
 	cmd.Run()

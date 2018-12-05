@@ -10,8 +10,8 @@ type Merchant struct {
 func InitializePlayer() Merchant {
 	return Merchant{
 		Name:      GenerateName(),
-		Positionx: 0, // randomize starting loc from diff town locs
-		Positiony: 0,
+		Positionx: 4, // randomize starting loc from diff town locs
+		Positiony: 20,
 		Gold:      420, // blaze it
 	}
 }
