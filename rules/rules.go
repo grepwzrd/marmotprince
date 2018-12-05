@@ -18,3 +18,13 @@ func GenerateCurrentChoices(prince player.Merchant, world locations.WorldMap) []
 	choices = append(choices, Choice{Keyword: "shop"})
 	return choices
 }
+
+func ValidChoice(choice string, choices []Choice) bool {
+	// if choices has a keyword that matches choice
+	return true
+}
+
+func Chosen(choice string, choices []Choice) Choice {
+	//
+	return choices[0]
+}

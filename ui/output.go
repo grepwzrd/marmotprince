@@ -58,6 +58,10 @@ func DisplayPlayerStatus(prince player.Merchant, world locations.WorldMap) {
 	displayPlayerLocation(prince.Positionx, prince.Positiony, world.Cities)
 }
 
+func DisplayInputError() {
+	fmt.Println("!!! Error. That does not appear to be a valid choice.")
+}
+
 func DisplayChoices(choices []rules.Choice) {
 	header := "--- Please Select a Choice ---"
 	fmt.Println(header)
