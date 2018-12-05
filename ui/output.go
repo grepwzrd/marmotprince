@@ -24,7 +24,7 @@ func PrintWelcome() {
 		|            @              |
 		|           /_\             |
 		|          x-x-x            |
-		|         ( o_o )           |
+		|        (d o_o b)          |
 		|          \ . /            |
 		|           |v|             |
 		|                           |
