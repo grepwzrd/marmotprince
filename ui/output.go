@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/grepwzrd/marmotprince/locations"
 	"github.com/grepwzrd/marmotprince/player"
+	"github.com/grepwzrd/marmotprince/rules"
 	"os"
 	"os/exec"
 )
@@ -55,4 +56,12 @@ func displayPlayerLocation(posx int, posy int, cities []locations.City) {
 func DisplayPlayerStatus(prince player.Merchant, world locations.WorldMap) {
 	displayPlayerInformation(prince.Name, prince.Gold)
 	displayPlayerLocation(prince.Positionx, prince.Positiony, world.Cities)
+}
+
+func DisplayChoices(choices []rules.Choice) {
+	header := "--- Please Select a Choice ---"
+	fmt.Println(header)
+	for i := 0; i < len(choices); i++ {
+		fmt.Println(choices[i].Keyword)
+	}
 }
