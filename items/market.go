@@ -18,3 +18,9 @@ func GenerateMarket() Market {
 		PrimaryImport: commodities[rand.Intn(len(commodities))],
 	}
 }
+
+func (m Market) Tick() {
+	for _, c := range m.Commodities {
+		c.Fluctuate()
+	}
+}

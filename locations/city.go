@@ -39,3 +39,7 @@ func GenerateCities() []City {
 	cities = append(cities, farburrow)
 	return cities
 }
+
+func (c City) Tick() {
+	c.Market.Tick()
+}

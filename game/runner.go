@@ -1,7 +1,6 @@
 package game
 
 import (
-	"fmt"
 	"github.com/grepwzrd/marmotprince/locations"
 	"github.com/grepwzrd/marmotprince/player"
 	"github.com/grepwzrd/marmotprince/rules"
@@ -32,6 +31,7 @@ func gameloop(prince player.Merchant, world locations.WorldMap) {
 }
 
 func tick(choice rules.Choice, prince player.Merchant, world locations.WorldMap) {
-	// perform updates based on the data in the choice
-	fmt.Println("doing stuff bc you chose", choice.Keyword)
+	//rules.PerformChoice(choice, prince, world)
+	world.Tick()
+	// maybe this returns a result object that the gameloop can act upon with new choices and stuff
 }

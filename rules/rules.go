@@ -28,3 +28,6 @@ func Chosen(choice string, choices []Choice) Choice {
 	//
 	return choices[0]
 }
+
+//func PerformChoice(choice Choice, prince Merchant, world WorldMap) {
+//}

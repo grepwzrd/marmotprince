@@ -2,30 +2,28 @@ package items
 
 import (
 	"math/rand"
-	"time"
 )
 
 type Commodity struct {
 	Name     string
-	Price    int
+	price    int
 	UnitName string
 	Quantity int
+	bee      int
 }
 
 func generatePrice(baseRange []int) int {
-	rand.Seed(time.Now().UnixNano())
 	return baseRange[rand.Intn(len(baseRange))]
 }
 
 func generateQuantity() int {
-	rand.Seed(time.Now().UnixNano())
 	return rand.Intn(135)
 }
 
 func generateCommodity(name string, priceRange []int, unitName string) Commodity {
 	return Commodity{
 		Name:     name,
-		Price:    generatePrice(priceRange),
+		price:    generatePrice(priceRange),
 		UnitName: unitName,
 		Quantity: generateQuantity(),
 	}
@@ -40,4 +38,26 @@ func BuildCommoditiesList() []Commodity {
 	c = append(c, generateCommodity("pinecones", []int{6, 7}, "each"))
 	c = append(c, generateCommodity("acorns", []int{1, 2, 3}, "cheekpouch"))
 	return c
+}
+
+func (c Commodity) Price() int {
+	return c.price
+}
+
+func (c *Commodity) updatePrice(newPrice int) {
+	c.price = newPrice
+}
+
+func (c Commodity) performFluctuate() {
+	if rand.Intn(3) == 0 {
+		c.updatePrice(c.price + 1)
+	} else if rand.Intn(4) == 0 {
+		c.updatePrice(c.price - 1)
+	}
+}
+
+func (c Commodity) Fluctuate() {
+	if rand.Intn(2) == 0 {
+		c.performFluctuate()
+	}
 }
