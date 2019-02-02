@@ -1,7 +1,5 @@
 package locations
 
-import "fmt"
-
 type WorldMap struct {
 	Cities    []City
 	MaxPlusX  int
@@ -23,7 +21,6 @@ func BuildWorldMap() WorldMap {
 func (w WorldMap) Tick() {
 	// can we do this in parallel
 	for _, city := range w.Cities {
-		fmt.Println(city.Market)
 		city.Tick()
 	}
 }

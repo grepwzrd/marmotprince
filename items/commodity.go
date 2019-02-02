@@ -9,7 +9,6 @@ type Commodity struct {
 	price    int
 	UnitName string
 	Quantity int
-	bee      int
 }
 
 func generatePrice(baseRange []int) int {
@@ -44,20 +43,15 @@ func (c Commodity) Price() int {
 	return c.price
 }
 
-func (c *Commodity) updatePrice(newPrice int) {
-	c.price = newPrice
-}
-
-func (c Commodity) performFluctuate() {
+func FluctuatePrice(c Commodity) {
 	if rand.Intn(3) == 0 {
-		c.updatePrice(c.price + 1)
+		updatePrice(&c, c.price+1)
 	} else if rand.Intn(4) == 0 {
-		c.updatePrice(c.price - 1)
+		updatePrice(&c, c.price-1)
 	}
 }
 
-func (c Commodity) Fluctuate() {
-	if rand.Intn(2) == 0 {
-		c.performFluctuate()
-	}
+func updatePrice(c *Commodity, newPrice int) {
+	a := Commodity{Name: c.Name, UnitName: c.UnitName, Quantity: c.Quantity, price: newPrice}
+	*c = a
 }
