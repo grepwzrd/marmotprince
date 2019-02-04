@@ -6,6 +6,7 @@ type WorldMap struct {
 	MaxPlusY  int
 	MaxMinusX int
 	MaxMinusY int
+	Age       int
 }
 
 func BuildWorldMap() WorldMap {
@@ -15,12 +16,15 @@ func BuildWorldMap() WorldMap {
 		MaxPlusY:  100,
 		MaxMinusX: -100,
 		MaxMinusY: -100,
+		Age:       0,
 	}
 }
 
-func (w WorldMap) Tick() {
-	// can we do this in parallel
-	for _, city := range w.Cities {
-		city.Tick()
+func (w WorldMap) Tick() WorldMap {
+	for i, city := range w.Cities {
+		c := city.Tick()
+		w.Cities[i] = c
 	}
+	w.Age += 1
+	return w
 }

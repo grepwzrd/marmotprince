@@ -2,6 +2,7 @@ package locations
 
 import (
 	"github.com/grepwzrd/marmotprince/items"
+	"math/rand"
 )
 
 func (c City) Coordinates() [2]int {
@@ -15,6 +16,7 @@ type City struct {
 	PositionY     int
 	PrimaryExport items.Commodity
 	PrimaryImport items.Commodity
+	Weather       string
 }
 
 func buildCity(name string, positionX int, positionY int) City {
@@ -26,6 +28,7 @@ func buildCity(name string, positionX int, positionY int) City {
 		Market:        market,
 		PrimaryExport: market.PrimaryExport,
 		PrimaryImport: market.PrimaryImport,
+		Weather:       "sun",
 	}
 }
 
@@ -40,6 +43,23 @@ func GenerateCities() []City {
 	return cities
 }
 
-func (c City) Tick() {
-	c.Market.Tick()
+func determineWeather(lastWeather string) string {
+	if rand.Intn(3) == 0 {
+		return lastWeather
+	} else {
+		possibleWeather := []string{
+			"sun",
+			"rain",
+			"clouds",
+			"hot",
+			"snow",
+		}
+		return possibleWeather[rand.Intn(len(possibleWeather))]
+	}
+}
+
+func (c City) Tick() City {
+	c.Weather = determineWeather(c.Weather)
+	c.Market = c.Market.Tick()
+	return c
 }

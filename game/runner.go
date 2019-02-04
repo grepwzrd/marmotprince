@@ -21,17 +21,11 @@ func gameloop(prince player.Merchant, world locations.WorldMap) {
 		choices := rules.GenerateCurrentChoices(prince, world)
 		ui.DisplayChoices(choices)
 		choice := ui.GetUserInput()
-		if rules.ValidChoice(choice, choices) { // check for conventions and idiomatic way to do all this stuff
-			chosen := rules.Chosen(choice, choices)
-			tick(chosen, prince, world)
+		if rules.ValidChoice(choice, choices) {
+			//chosen := rules.Chosen(choice, choices)
+			world = world.Tick()
 		} else {
 			ui.DisplayInputError()
 		}
 	}
-}
-
-func tick(choice rules.Choice, prince player.Merchant, world locations.WorldMap) {
-	//rules.PerformChoice(choice, prince, world)
-	world.Tick()
-	// maybe this returns a result object that the gameloop can act upon with new choices and stuff
 }

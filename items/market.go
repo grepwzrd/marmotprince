@@ -1,7 +1,6 @@
 package items
 
 import (
-	"fmt"
 	"math/rand"
 )
 
@@ -20,15 +19,10 @@ func GenerateMarket() Market {
 	}
 }
 
-func plusHundo(c *Commodity) {
-	c.price = c.price + 400
-}
-
-func (m Market) Tick() {
-	for _, c := range m.Commodities {
-		fmt.Println(c.Name)
-		plusHundo(&c)
-		fmt.Println(c.price)
-		//FluctuatePrice(c)
+func (m Market) Tick() Market {
+	for i, commodity := range m.Commodities {
+		c := commodity.Tick()
+		m.Commodities[i] = c
 	}
+	return m
 }

@@ -6,7 +6,7 @@ import (
 
 type Commodity struct {
 	Name     string
-	price    int
+	Price    int
 	UnitName string
 	Quantity int
 }
@@ -22,7 +22,7 @@ func generateQuantity() int {
 func generateCommodity(name string, priceRange []int, unitName string) Commodity {
 	return Commodity{
 		Name:     name,
-		price:    generatePrice(priceRange),
+		Price:    generatePrice(priceRange),
 		UnitName: unitName,
 		Quantity: generateQuantity(),
 	}
@@ -39,19 +39,16 @@ func BuildCommoditiesList() []Commodity {
 	return c
 }
 
-func (c Commodity) Price() int {
-	return c.price
-}
-
-func FluctuatePrice(c Commodity) {
+func fluctuatePrice(p int) int {
 	if rand.Intn(3) == 0 {
-		updatePrice(&c, c.price+1)
+		return p + 1
 	} else if rand.Intn(4) == 0 {
-		updatePrice(&c, c.price-1)
+		return p - 1
 	}
+	return p
 }
 
-func updatePrice(c *Commodity, newPrice int) {
-	a := Commodity{Name: c.Name, UnitName: c.UnitName, Quantity: c.Quantity, price: newPrice}
-	*c = a
+func (c Commodity) Tick() Commodity {
+	c.Price = fluctuatePrice(c.Price)
+	return c
 }
