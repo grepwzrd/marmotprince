@@ -53,7 +53,14 @@ func displayPlayerLocation(posx int, posy int, cities []locations.City) {
 	}
 }
 
+func displayMap(w locations.WorldMap) {
+	const Border = "⬜"
+	const Grass = "🌱"
+	const Player = "🐹"
+}
+
 func DisplayPlayerStatus(prince player.Merchant, world locations.WorldMap) {
+	displayMap(world)
 	displayPlayerInformation(prince.Name, prince.Gold)
 	displayPlayerLocation(prince.Positionx, prince.Positiony, world.Cities)
 }

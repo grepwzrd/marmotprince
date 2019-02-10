@@ -19,7 +19,7 @@ func gameloop(prince player.Merchant, world locations.WorldMap) {
 	for {
 		ui.DisplayPlayerStatus(prince, world)
 		choices := rules.GenerateCurrentChoices(prince, world)
-		ui.DisplayChoices(choices)
+		//ui.DisplayChoices(choices)
 		choice := ui.GetUserInput()
 		if rules.ValidChoice(choice, choices) {
 			//chosen := rules.Chosen(choice, choices)
